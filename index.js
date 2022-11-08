@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 const { json } = require("express");
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
@@ -449,6 +450,6 @@ app.get("/subway", async (req, res) => {
 //   });
 // }
 
-app.listen(process.env.PORT || 3200, () => {
+app.listen(process.env.PORT || process.env.LOCALPORT, () => {
   console.log("Server started");
 });
