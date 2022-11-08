@@ -421,17 +421,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/subway", async (req, res) => {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzEwOTA4YjczMWVlMDAwMTZkOWUwYjAiLCJlbWFpbCI6InRoaXJ1dmFyYW4udGhheWFsYW5AZ21haWwuY29tIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDIzLTAzLTA5VDAwOjAwOjAwLjAwMFoiLCJpc1RyYWluaW5nIjp0cnVlLCJpYXQiOjE2Njc4OTY5Mjd9.Ek7cqLj4-BlPYd5LsWX8lnjOhMj2MPNxw7YjDJvL42A";
   try {
-    const subway = await axios.get(
-      "https://lereacteur-bootcamp-api.herokuapp.com/api/deliveroo/menu/paris/3eme-temple/sub-arc-subway-rambuteau?day=today&geohash=u09wj8rk5bqr&time=ASAP",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const subway = await axios.get(process.env.APISUB, {
+      headers: {
+        Authorization: process.env.BEARER,
+      },
+    });
     console.log(subway.data);
     return res.json(subway.data);
   } catch (error) {
